@@ -3,107 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group 8</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>Group 8 - Không Gian Học Tập 12A1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0052cc;     /* Xanh đậm Facebook */
-            --secondary: #172b4d;   /* Màu chữ tối */
-            --bg-body: #f4f5f7;     /* Xám nhạt nền */
-            --white: #ffffff;
-            --accent-math: #ff5630; /* Đỏ cam cho Toán */
-            --accent-phys: #36b37e; /* Xanh lá cho Lý */
-            --accent-chem: #ffab00; /* Vàng cho Hóa */
-            --accent-it: #6554c0;   /* Tím cho Tin */
+            --primary: #ffffff;
+            --accent-math: #ff4757;   /* Đỏ neon */
+            --accent-phys: #1e90ff;   /* Xanh dương sáng */
+            --accent-chem: #ffa502;   /* Cam sáng */
+            --accent-it: #9b59b6;     /* Tím */
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --text-main: #2d3436;
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Roboto', sans-serif; margin: 0; background-color: var(--bg-body); color: var(--secondary); line-height: 1.5; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Quicksand', sans-serif; 
+            color: var(--text-main); 
+            line-height: 1.6;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND ANIMATION (VẬT THỂ CHUYỂN ĐỘNG) */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .circles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; }
+        .circles li {
+            position: absolute; display: block; list-style: none;
+            width: 20px; height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animate 25s linear infinite;
+            bottom: -150px; border-radius: 50%;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+        .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+        .circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+        .circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+        .circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+        .circles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+        @keyframes animate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+        }
 
         /* HEADER & NAV */
         nav {
-            background: var(--white); position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             display: flex; justify-content: center; flex-wrap: wrap;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
         nav a {
-            padding: 15px 25px; text-decoration: none; color: var(--secondary);
-            font-weight: 700; text-transform: uppercase; transition: 0.3s;
-            border-bottom: 4px solid transparent; cursor: pointer;
+            padding: 12px 25px; text-decoration: none; color: var(--text-main);
+            font-weight: 700; text-transform: uppercase; transition: all 0.3s;
+            border-radius: 25px; margin: 0 5px; cursor: pointer;
         }
-        nav a:hover, nav a.active-link { background: #ebecf0; color: var(--primary); border-bottom-color: var(--primary); }
+        nav a:hover, nav a.active-link { background: #fff; color: #e73c7e; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transform: translateY(-2px); }
 
         .banner {
-            background: linear-gradient(120deg, #0052cc, #2684ff);
-            color: white; text-align: center; padding: 60px 20px;
+            text-align: center; padding: 80px 20px; color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        .banner h1 { margin: 0; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .banner h1 { font-size: 3.5rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; margin-bottom: 10px; }
+        .banner p { font-size: 1.2rem; font-weight: 600; background: rgba(0,0,0,0.2); display: inline-block; padding: 10px 25px; border-radius: 30px; backdrop-filter: blur(5px); }
 
         /* MAIN CONTENT */
-        .container { max-width: 1200px; margin: 0 auto; padding: 30px 15px; min-height: 800px; }
-        
+        .container { max-width: 1300px; margin: 0 auto; padding: 30px 15px; min-height: 800px; }
         .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeEffect 0.6s; }
+        .tab-content.active { display: block; animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         
-        @keyframes fadeEffect { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
+        @keyframes zoomIn { from {opacity: 0; transform: scale(0.95) translateY(20px);} to {opacity: 1; transform: scale(1) translateY(0);} }
 
-        /* LESSON CARD STYLING */
+        /* MÀU SẮC CHỦ ĐẠO THEO MÔN */
+        .subject-title { text-align: center; font-size: 2.5rem; text-transform: uppercase; margin-bottom: 40px; color: white; text-shadow: 2px 2px 5px rgba(0,0,0,0.4); }
+        
+        /* LESSON CARD STYLING (GLASSMORPHISM) */
         .lesson-card {
-            background: var(--white); border-radius: 8px; padding: 25px; margin-bottom: 25px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 5px solid #ccc; position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 30px; margin-bottom: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            position: relative; overflow: hidden;
+            transition: transform 0.3s ease;
         }
-        /* Màu riêng cho từng môn */
-        #math .lesson-card { border-left-color: var(--accent-math); }
-        #physics .lesson-card { border-left-color: var(--accent-phys); }
-        #chemistry .lesson-card { border-left-color: var(--accent-chem); }
-        #it .lesson-card { border-left-color: var(--accent-it); }
+        .lesson-card:hover { transform: translateY(-5px); }
+        
+        /* Dải màu trang trí bên trái card */
+        .lesson-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%;
+        }
+        #math .lesson-card::before { background: var(--accent-math); }
+        #physics .lesson-card::before { background: var(--accent-phys); }
+        #chemistry .lesson-card::before { background: var(--accent-chem); }
+        #it .lesson-card::before { background: var(--accent-it); }
 
         .lesson-header {
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;
+            display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.4); 
+            padding-bottom: 15px; margin-bottom: 20px;
         }
-        .lesson-number {
-            font-weight: 900; font-size: 1.2rem; background: #eee; padding: 5px 15px; border-radius: 20px;
-        }
-        .lesson-title { font-size: 1.3rem; font-weight: 700; margin: 0; color: #333; flex-grow: 1; margin-left: 15px; }
+        .lesson-number { font-weight: 800; font-size: 1.2rem; background: rgba(255,255,255,0.7); color: #333; padding: 8px 20px; border-radius: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .lesson-title { font-size: 1.5rem; font-weight: 700; margin-left: 20px; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); flex-grow: 1; }
 
-        /* FORMULA GRID */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        /* GRID SYSTEM */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         @media(max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
 
-        .box { background: #fafbfc; border: 1px solid #dfe1e6; padding: 15px; border-radius: 5px; }
-        .box strong { color: var(--primary); display: block; margin-bottom: 8px; font-size: 0.9rem; text-transform: uppercase; }
-
-        /* MATH DISPLAY (CSS Only - No JS Library) */
-        .math {
-            font-family: 'Times New Roman', serif; font-style: italic; font-size: 1.15rem;
-            text-align: center; background: #fff; padding: 8px; border-radius: 4px; border: 1px dashed #ccc; margin-top: 5px;
+        /* BOX NỘI DUNG */
+        .box { 
+            background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.8); 
+            padding: 20px; border-radius: 15px; transition: 0.3s; 
         }
-        .frac { display: inline-block; vertical-align: middle; text-align: center; margin: 0 2px; }
-        .frac > span { display: block; padding: 0 3px; }
-        .frac span.bot { border-top: 1px solid #000; }
-        .sup { vertical-align: super; font-size: 0.8em; }
-        .sub { vertical-align: sub; font-size: 0.8em; }
-        .int { font-size: 1.4em; vertical-align: middle; font-style: normal; margin-right: 3px; }
+        .box:hover { background: rgba(255,255,255,0.8); transform: scale(1.02); }
+        
+        #math .box strong { color: var(--accent-math); }
+        #physics .box strong { color: var(--accent-phys); }
+        #chemistry .box strong { color: #d35400; }
+        #it .box strong { color: var(--accent-it); }
+        
+        .box strong { display: block; margin-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; font-weight: 800; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; }
+
+        /* MATH DISPLAY CẢI TIẾN */
+        .math {
+            font-family: 'Roboto Mono', monospace; font-size: 1.1rem; font-weight: bold;
+            text-align: center; background: rgba(255,255,255,0.9); color: #2c3e50;
+            padding: 12px; border-radius: 10px; margin-top: 10px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+            display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 5px;
+        }
+        .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 5px; }
+        .frac > span { padding: 2px 5px; line-height: 1.2; }
+        .frac span.bot { border-top: 2px solid #2c3e50; }
+        .sup { vertical-align: super; font-size: 0.75em; font-weight: bold; }
+        .sub { vertical-align: sub; font-size: 0.75em; font-weight: bold; }
+        .int { font-size: 1.8em; font-weight: normal; margin-right: 5px; }
+        .sqrt { display: flex; align-items: center; }
+        .sqrt::before { content: "√"; font-size: 1.5em; margin-right: 2px; }
+        .sqrt-content { border-top: 2px solid #2c3e50; padding-top: 2px; }
+
+        /* DANH SÁCH */
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
 
         /* FOOTER & BUTTON */
-        footer { background: var(--secondary); color: #fff; text-align: center; padding: 40px; margin-top: 50px; }
+        footer { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); color: #fff; text-align: center; padding: 40px; margin-top: 50px; }
         .scroll-top {
-            position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: white;
-            width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 24px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); opacity: 0.8; transition: 0.3s;
+            position: fixed; bottom: 30px; right: 30px; background: rgba(255,255,255,0.9); color: #e73c7e;
+            width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 28px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: all 0.3s;
+            z-index: 1000; font-weight: bold;
         }
-        .scroll-top:hover { opacity: 1; transform: translateY(-3px); }
+        .scroll-top:hover { transform: translateY(-5px) scale(1.1); background: #fff; box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
 
     </style>
 </head>
 <body>
 
+    <ul class="circles">
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    </ul>
+
     <header>
         <div class="banner">
             <h1>HỌC CÙNG NHÓM 8 12A1</h1>
-            <p>CÙNG HỌC - CÙNG HIỂU - CÙNG TIẾN BỘ</p>
+            <p>🚀 CÙNG HỌC - CÙNG HIỂU - CÙNG BỨT PHÁ 🚀</p>
         </div>
         <nav>
             <a onclick="showTab('home', this)" class="active-link">Trang Chủ</a>
@@ -111,333 +197,304 @@
             <a onclick="showTab('physics', this)">Vật Lý</a>
             <a onclick="showTab('chemistry', this)">Hóa Học</a>
             <a onclick="showTab('it', this)">Tin Học</a>
-            <a href="https://thyrox139-hue.github.io/ptht/jjj">STEM</a>
+            <a href="https://thyrox139-hue.github.io/ptht/jjj" target="_blank">Câu Hỏi Trắc Nghiệm</a>
         </nav>
     </header>
 
     <div class="container" id="main">
 
         <div id="home" class="tab-content active">
-            <div style="text-align: center; padding: 40px;">
-                <h2 style="color: var(--primary);">WELCOME TO GROUP 8 WEBSITE</h2>
-                <p>CHÚC CÁC BẠN HỌC<b> VUI VẺ</b></p>
-                <div class="grid-2" style="margin-top: 30px;">
+            <div style="text-align: center; padding: 40px; background: var(--glass-bg); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid var(--glass-border);">
+                <h2 style="color: #fff; font-size: 3rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); margin-bottom: 20px;">WELCOME TO OUR UNIVERSE</h2>
+                <p style="font-size: 1.2rem; color: #fff;">Kho tàng kiến thức Khối A & Khối A1 (Toán, Lý, Hóa, Tin) chuẩn bị cho kỳ thi THPT Quốc Gia.</p>
+                <div class="grid-2" style="margin-top: 40px;">
                     <div class="box">
-                        <h3>📖 Cấu trúc</h3>
-                        <p>LÝ THUYẾT VÀ CÁC CÔNG THỨC NHANH</p>
+                        <h3>📚 Hệ thống lý thuyết</h3>
+                        <p>Cô đọng, súc tích, dễ hiểu nhất cho 4 môn thi trắc nghiệm.</p>
                     </div>
                     <div class="box">
-                        <h3>⚡ Công thức tính nhanh</h3>
-                        <p>CÁC CÔNG THỨC GIẢI NHANH CỦA TOÁN LÝ HÓA</p>
+                        <h3>⚡ Bí kíp giải nhanh</h3>
+                        <p>Tổng hợp các công thức "đỉnh của chóp" giúp tiết kiệm thời gian làm bài.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="math" class="tab-content">
-            <h2 style="text-align: center; color: var(--accent-math);">TOÁN HỌC (GIẢI TÍCH & OXYZ)</h2>
+            <h2 class="subject-title">TOÁN HỌC (GIẢI TÍCH & OXYZ)</h2>
             
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 1</span><h3 class="lesson-title">Nguyên Hàm Cơ Bản</h3></div>
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 1</span><h3 class="lesson-title">Ứng Dụng Đạo Hàm & Khảo Sát Hàm Số</h3></div>
+                <div class="grid-3">
+                    <div class="box"><strong>Cực trị hàm bậc 3</strong><p>y = ax³ + bx² + cx + d. Có 2 cực trị khi:</p><div class="math">Δ' = b<span class="sup">2</span> - 3ac > 0</div></div>
+                    <div class="box"><strong>Cực trị hàm trùng phương</strong><p>y = ax⁴ + bx² + c. Có 3 cực trị khi:</p><div class="math">a.b < 0</div></div>
+                    <div class="box"><strong>Tiệm cận hàm phân thức</strong><p>y = (ax+b)/(cx+d)</p><div class="math">TCN: y = a/c<br>TCĐ: x = -d/c</div></div>
+                </div>
+            </div>
+
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 2</span><h3 class="lesson-title">Hàm Số Lũy Thừa, Mũ & Logarit</h3></div>
                 <div class="grid-2">
-                    <div class="box"><strong>Lũy thừa</strong><div class="math"><span class="int">∫</span>x<span class="sup">n</span>dx = <div class="frac"><span>x<span class="sup">n+1</span></span><span class="bot">n+1</span></div> + C</div></div>
-                    <div class="box"><strong>Hàm 1/x</strong><div class="math"><span class="int">∫</span><div class="frac"><span>dx</span><span class="bot">x</span></div> = ln|x| + C</div></div>
-                    <div class="box"><strong>Hàm e mũ</strong><div class="math"><span class="int">∫</span>e<span class="sup">x</span>dx = e<span class="sup">x</span> + C</div></div>
-                    <div class="box"><strong>Lượng giác</strong><div class="math"><span class="int">∫</span>cos x dx = sin x + C</div></div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 2</span><h3 class="lesson-title">Phương Pháp Tính Nguyên Hàm</h3></div>
-                <div class="box">
-                    <strong>1. Đổi biến số:</strong> Đặt t = u(x) ⇒ dt = u'(x)dx.
-                    <br><strong>2. Nguyên hàm từng phần:</strong> <div class="math"><span class="int">∫</span>u dv = u.v - <span class="int">∫</span>v du</div>
-                    <br><i>Thứ tự đặt u:</i> Nhất Lô (Log) - Nhì Đa (Đa thức) - Tam Lượng (Lượng giác) - Tứ Mũ.
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 3</span><h3 class="lesson-title">Tích Phân</h3></div>
-                <div class="grid-2">
-                    <div class="box"><strong>Định nghĩa</strong><div class="math">I = F(b) - F(a)</div></div>
-                    <div class="box"><strong>Tính chất</strong><div class="math"><span class="int">∫</span><span class="sup">b</span><span class="sub">a</span> = <span class="int">∫</span><span class="sup">c</span><span class="sub">a</span> + <span class="int">∫</span><span class="sup">b</span><span class="sub">c</span></div></div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 4</span><h3 class="lesson-title">Ứng Dụng Tích Phân</h3></div>
-                <div class="grid-2">
-                    <div class="box"><strong>Diện tích (S)</strong><p>Giới hạn bởi y=f(x), Ox, x=a, x=b</p><div class="math">S = <span class="int">∫</span><span class="sup">b</span><span class="sub">a</span> |f(x)| dx</div></div>
-                    <div class="box"><strong>Thể tích (V)</strong><p>Quay quanh Ox</p><div class="math">V = π <span class="int">∫</span><span class="sup">b</span><span class="sub">a</span> [f(x)]<span class="sup">2</span> dx</div></div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 5</span><h3 class="lesson-title">Số Phức Cơ Bản</h3></div>
-                <div class="box">
-                    <p>Dạng đại số: <b>z = a + bi</b>. Số phức liên hợp: <b>z̄ = a - bi</b>.</p>
-                    <div class="math">Modun: |z| = √(a<span class="sup">2</span> + b<span class="sup">2</span>)</div>
-                    <p>Điểm biểu diễn M(a; b) trên mặt phẳng tọa độ Oxy.</p>
-                </div>
-            </div>
-
-             <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 6</span><h3 class="lesson-title">Phương Trình Số Phức</h3></div>
-                <div class="box">
-                    <strong>Giải pt bậc 2: Az² + Bz + C = 0</strong>
-                    <br>Tính Δ = B² - 4AC.
-                    <br>- Nếu Δ < 0: Phương trình có 2 nghiệm phức liên hợp:
-                    <div class="math">z<span class="sub">1,2</span> = <div class="frac"><span>-B ± i√|Δ|</span><span class="bot">2A</span></div></div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 7</span><h3 class="lesson-title">Hệ Tọa Độ Oxyz</h3></div>
-                <div class="grid-2">
-                    <div class="box"><strong>Tích vô hướng</strong><div class="math">u.v = x.x' + y.y' + z.z'</div></div>
-                    <div class="box"><strong>Tích có hướng</strong><div class="math">[u, v] = (y.z'-z.y'; z.x'-x.z'; ...)</div></div>
-                    <div class="box"><strong>Độ dài đoạn thẳng</strong><div class="math">AB = √[(x<span class="sub">B</span>-x<span class="sub">A</span>)<span class="sup">2</span> + ...]</div></div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 8</span><h3 class="lesson-title">Phương Trình Mặt Cầu</h3></div>
-                <div class="box">
-                    <p>Mặt cầu tâm I(a; b; c), bán kính R:</p>
-                    <div class="math">(x - a)<span class="sup">2</span> + (y - b)<span class="sup">2</span> + (z - c)<span class="sup">2</span> = R<span class="sup">2</span></div>
-                    <p>Dạng khai triển: x² + y² + z² - 2ax - 2by - 2cz + d = 0</p>
-                    <div class="math">R = √(a<span class="sup">2</span>+b<span class="sup">2</span>+c<span class="sup">2</span>-d)</div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 9</span><h3 class="lesson-title">Phương Trình Mặt Phẳng</h3></div>
-                <div class="box">
-                    <p>Đi qua điểm M(x₀; y₀; z₀) và có VTPT n(A; B; C):</p>
-                    <div class="math">A(x-x₀) + B(y-y₀) + C(z-z₀) = 0</div>
-                    <p><strong>Khoảng cách từ điểm đến mặt phẳng:</strong></p>
-                    <div class="math">d(M, P) = <div class="frac"><span>|Ax₀ + By₀ + Cz₀ + D|</span><span class="bot">√(A<span class="sup">2</span>+B<span class="sup">2</span>+C<span class="sup">2</span>)</span></div></div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 10</span><h3 class="lesson-title">Phương Trình Đường Thẳng</h3></div>
-                <div class="grid-2">
-                    <div class="box">
-                        <strong>Tham số</strong>
-                        <p>Qua M(x₀;y₀;z₀), VTCP u(a;b;c)</p>
-                        <p>x = x₀ + at <br> y = y₀ + bt <br> z = z₀ + ct</p>
+                    <div class="box"><strong>Đạo hàm Mũ & Logarit</strong>
+                        <div class="math">(e<span class="sup">x</span>)' = e<span class="sup">x</span></div>
+                        <div class="math">(a<span class="sup">x</span>)' = a<span class="sup">x</span>.lna</div>
+                        <div class="math">(ln x)' = 1/x</div>
+                        <div class="math">(log<span class="sub">a</span>x)' = 1/(x.lna)</div>
                     </div>
-                    <div class="box">
-                        <strong>Chính tắc</strong>
-                        <div class="math"><div class="frac"><span>x - x₀</span><span class="bot">a</span></div> = <div class="frac"><span>y - y₀</span><span class="bot">b</span></div> = <div class="frac"><span>z - z₀</span><span class="bot">c</span></div></div>
+                    <div class="box"><strong>Công thức biến đổi Logarit</strong>
+                        <p>logₐ(bc) = logₐb + logₐc</p>
+                        <p>logₐ(b/c) = logₐb - logₐc</p>
+                        <p>logₐ(bⁿ) = n.logₐb</p>
+                        <div class="math">log<span class="sub">a</span>b = <div class="frac"><span>log<span class="sub">c</span>b</span><span class="bot">log<span class="sub">c</span>a</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 3</span><h3 class="lesson-title">Nguyên Hàm & Tích Phân</h3></div>
+                <div class="grid-3">
+                    <div class="box"><strong>Nguyên hàm cơ bản</strong>
+                        <div class="math"><span class="int">∫</span>x<span class="sup">n</span>dx = <div class="frac"><span>x<span class="sup">n+1</span></span><span class="bot">n+1</span></div> + C</div>
+                        <div class="math"><span class="int">∫</span>(1/x)dx = ln|x| + C</div>
+                        <div class="math"><span class="int">∫</span>sin(ax+b)dx = -<div class="frac"><span>1</span><span class="bot">a</span></div>cos(ax+b)</div>
+                    </div>
+                    <div class="box"><strong>Diện tích hình phẳng (S)</strong>
+                        <p>Giới hạn bởi 2 đồ thị f(x), g(x):</p>
+                        <div class="math">S = <span class="int">∫</span><span class="sup">b</span><span class="sub">a</span> |f(x) - g(x)| dx</div>
+                    </div>
+                    <div class="box"><strong>Thể tích khối tròn xoay (V)</strong>
+                        <p>Quay quanh trục Ox:</p>
+                        <div class="math">V = π <span class="int">∫</span><span class="sup">b</span><span class="sub">a</span> [f(x)]<span class="sup">2</span> dx</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 4</span><h3 class="lesson-title">Số Phức</h3></div>
+                <div class="grid-2">
+                    <div class="box"><strong>Dạng đại số & Hình học</strong>
+                        <p>Số phức z = a + bi (i² = -1).</p>
+                        <p>Điểm biểu diễn M(a; b). Liên hợp: z̄ = a - bi.</p>
+                        <div class="math">Modun: |z| = <div class="sqrt"><span class="sqrt-content">a<span class="sup">2</span> + b<span class="sup">2</span></span></div></div>
+                    </div>
+                    <div class="box"><strong>Phương trình bậc 2: Az² + Bz + C = 0</strong>
+                        <p>Khi Δ < 0, pt có 2 nghiệm phức liên hợp:</p>
+                        <div class="math">z<span class="sub">1,2</span> = <div class="frac"><span>-B ± i<div class="sqrt"><span class="sqrt-content">|Δ|</span></div></span><span class="bot">2A</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 5</span><h3 class="lesson-title">Hình Học Không Gian Oxyz</h3></div>
+                <div class="grid-3">
+                    <div class="box"><strong>Tọa độ Vectơ</strong>
+                        <div class="math">[u, v] = (y₁z₂-z₁y₂; z₁x₂-x₁z₂; x₁y₂-y₁x₂)</div>
+                        <p>Diện tích tam giác: S = ½|[AB, AC]|</p>
+                        <p>Thể tích tứ diện: V = ⅙|[AB, AC].AD|</p>
+                    </div>
+                    <div class="box"><strong>Mặt Cầu & Mặt Phẳng</strong>
+                        <p>Mặt phẳng (P): Ax + By + Cz + D = 0 (VTPT n = (A,B,C))</p>
+                        <p>Mặt cầu tâm I(a,b,c), bk R:</p>
+                        <div class="math">(x-a)² + (y-b)² + (z-c)² = R²</div>
+                    </div>
+                    <div class="box"><strong>Khoảng cách</strong>
+                        <p>Từ M(x₀,y₀,z₀) đến mp(P):</p>
+                        <div class="math">d = <div class="frac"><span>|Ax₀ + By₀ + Cz₀ + D|</span><span class="bot"><div class="sqrt"><span class="sqrt-content">A² + B² + C²</span></div></span></div></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="physics" class="tab-content">
-            <h2 style="text-align: center; color: var(--accent-phys);">VẬT LÝ (SÓNG & HẠT NHÂN)</h2>
+            <h2 class="subject-title">VẬT LÝ 12 (DAO ĐỘNG & SÓNG)</h2>
             
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 1</span><h3 class="lesson-title">Mạch Dao Động LC</h3></div>
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 1</span><h3 class="lesson-title">Dao Động Cơ Học</h3></div>
                 <div class="grid-3">
-                    <div class="box"><strong>Chu kì T</strong><div class="math">2π√(LC)</div></div>
-                    <div class="box"><strong>Tần số f</strong><div class="math"><div class="frac"><span>1</span><span class="bot">2π√(LC)</span></div></div></div>
-                    <div class="box"><strong>Bước sóng λ</strong><div class="math">c.T</div></div>
+                    <div class="box"><strong>Phương trình dao động</strong>
+                        <div class="math">x = A.cos(ωt + φ)</div>
+                        <div class="math">v = -ωA.sin(ωt + φ)</div>
+                        <div class="math">a = -ω²x</div>
+                    </div>
+                    <div class="box"><strong>Con lắc lò xo</strong>
+                        <div class="math">ω = <div class="sqrt"><span class="sqrt-content">k/m</span></div></div>
+                        <p>Cơ năng: W = ½kA² = ½mω²A²</p>
+                    </div>
+                    <div class="box"><strong>Con lắc đơn</strong>
+                        <div class="math">ω = <div class="sqrt"><span class="sqrt-content">g/l</span></div> ; T = 2π<div class="sqrt"><span class="sqrt-content">l/g</span></div></div>
+                        <p>Chu kỳ không phụ thuộc vào khối lượng m.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 2</span><h3 class="lesson-title">Điện Từ Trường</h3></div>
-                <div class="box">
-                    <p>- Điện trường biến thiên sinh ra từ trường biến thiên.</p>
-                    <p>- Từ trường biến thiên sinh ra điện trường xoáy.</p>
-                    <p>- Sóng điện từ là sóng ngang, truyền được trong chân không (c = 3.10⁸ m/s).</p>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 3</span><h3 class="lesson-title">Giao Thoa Ánh Sáng</h3></div>
-                <div class="grid-2">
-                    <div class="box"><strong>Khoảng vân i</strong><div class="math">i = <div class="frac"><span>λD</span><span class="bot">a</span></div></div></div>
-                    <div class="box"><strong>Vị trí vân sáng</strong><div class="math">x = k.i</div></div>
-                    <div class="box"><strong>Vị trí vân tối</strong><div class="math">x = (k + 0,5)i</div></div>
-                    <div class="box"><strong>Khoảng cách n vân sáng</strong><div class="math">L = (n-1)i</div></div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 4</span><h3 class="lesson-title">Các Loại Quang Phổ</h3></div>
-                <ul>
-                    <li><b>QP Liên tục:</b> Dải màu cầu vồng. Do chất rắn, lỏng, khí áp suất lớn phát ra. Phụ thuộc nhiệt độ.</li>
-                    <li><b>QP Vạch phát xạ:</b> Các vạch màu trên nền tối. Do khí áp suất thấp. Đặc trưng cho nguyên tố.</li>
-                    <li><b>QP Vạch hấp thụ:</b> Vạch tối trên nền quang phổ liên tục.</li>
-                </ul>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 5</span><h3 class="lesson-title">Tia Hồng Ngoại - Tử Ngoại - X</h3></div>
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 3</span><h3 class="lesson-title">Dòng Điện Xoay Chiều (Đỉnh Cao RLC)</h3></div>
                 <div class="grid-3">
-                    <div class="box"><strong>Hồng ngoại</strong><br>> 0.76µm<br>Tác dụng nhiệt.</div>
-                    <div class="box"><strong>Tử ngoại</strong><br>< 0.38µm<br>Diệt khuẩn, làm đen da.</div>
-                    <div class="box"><strong>Tia X</strong><br>Bước sóng rất ngắn<br>Đâm xuyên mạnh.</div>
+                    <div class="box"><strong>Tổng trở Z</strong>
+                        <p>Z_L = Lω ; Z_C = 1/(Cω)</p>
+                        <div class="math">Z = <div class="sqrt"><span class="sqrt-content">R² + (Z<span class="sub">L</span> - Z<span class="sub">C</span>)²</span></div></div>
+                    </div>
+                    <div class="box"><strong>Định luật Ohm & Pha</strong>
+                        <div class="math">I = U/Z ; I<span class="sub">0</span> = U<span class="sub">0</span>/Z</div>
+                        <div class="math">tanφ = <div class="frac"><span>Z<span class="sub">L</span> - Z<span class="sub">C</span></span><span class="bot">R</span></div></div>
+                    </div>
+                    <div class="box"><strong>Hiện tượng cộng hưởng</strong>
+                        <p>Xảy ra khi Z_L = Z_C</p>
+                        <div class="math">ω = <div class="frac"><span>1</span><span class="bot"><div class="sqrt"><span class="sqrt-content">LC</span></div></span></div></div>
+                        <p>Lúc này: I_max = U/R; P_max = U²/R.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 6</span><h3 class="lesson-title">Lượng Tử Ánh Sáng</h3></div>
-                <div class="box">
-                    <strong>Công thức Anh-xtanh:</strong>
-                    <div class="math">ε = hf = <div class="frac"><span>hc</span><span class="bot">λ</span></div> = A + W<span class="sub">đmax</span></div>
-                    <p>Giới hạn quang điện: λ₀ = hc/A</p>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 7</span><h3 class="lesson-title">Mẫu Nguyên Tử Bo</h3></div>
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 5+6</span><h3 class="lesson-title">Sóng Ánh Sáng & Lượng Tử Ánh Sáng</h3></div>
                 <div class="grid-2">
-                    <div class="box"><strong>Bán kính quỹ đạo</strong><div class="math">r<span class="sub">n</span> = n<span class="sup">2</span>.r<span class="sub">0</span></div></div>
-                    <div class="box"><strong>Năng lượng photon phát ra</strong><div class="math">ε = E<span class="sub">cao</span> - E<span class="sub">thấp</span></div></div>
+                    <div class="box"><strong>Giao thoa Y-âng</strong>
+                        <div class="math">Khoảng vân: i = <div class="frac"><span>λD</span><span class="bot">a</span></div></div>
+                        <p>Vân sáng: x = k.i</p>
+                        <p>Vân tối: x = (k + 0.5)i</p>
+                    </div>
+                    <div class="box"><strong>Thuyết lượng tử (Anh-xtanh)</strong>
+                        <div class="math">Năng lượng: ε = hf = <div class="frac"><span>hc</span><span class="bot">λ</span></div></div>
+                        <p>Công thoát: A = hc/λ₀ (λ₀ là giới hạn quang điện).</p>
+                        <p>Điều kiện xảy ra hiện tượng QĐ ngoài: λ ≤ λ₀</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 8</span><h3 class="lesson-title">Cấu Tạo Hạt Nhân</h3></div>
-                <div class="box">
-                    <p>Kí hiệu: X(A, Z). Trong đó Z là proton, (A-Z) là nơtron.</p>
-                    <strong>Độ hụt khối:</strong>
-                    <div class="math">Δm = Zm<span class="sub">p</span> + (A-Z)m<span class="sub">n</span> - m<span class="sub">X</span></div>
-                    <strong>Năng lượng liên kết:</strong> E = Δm.c²
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 7</span><h3 class="lesson-title">Vật Lý Hạt Nhân</h3></div>
+                <div class="grid-2">
+                    <div class="box"><strong>Độ hụt khối & Năng lượng liên kết</strong>
+                        <div class="math">Δm = Z.m<span class="sub">p</span> + (A-Z).m<span class="sub">n</span> - m<span class="sub">X</span></div>
+                        <div class="math">W<span class="sub">lk</span> = Δm.c²</div>
+                        <p>Hạt nhân càng bền vững khi W_lk riêng (W_lk / A) càng lớn.</p>
+                    </div>
+                    <div class="box"><strong>Định luật phóng xạ</strong>
+                        <div class="math">N(t) = N<span class="sub">0</span>.2<span class="sup">-t/T</span> = N<span class="sub">0</span>.e<span class="sup">-λt</span></div>
+                        <div class="math">m(t) = m<span class="sub">0</span>.2<span class="sup">-t/T</span></div>
+                        <p>Hằng số phóng xạ: λ = ln2 / T.</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 9</span><h3 class="lesson-title">Phóng Xạ</h3></div>
-                <div class="box">
-                    <strong>Định luật phóng xạ:</strong>
-                    <div class="math">N = N<span class="sub">0</span>.2<span class="sup">-t/T</span></div>
-                    <div class="math">m = m<span class="sub">0</span>.2<span class="sup">-t/T</span></div>
-                    <p>Các tia phóng xạ: Alpha (He), Beta+ (Positron), Beta- (Electron), Gamma.</p>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 10</span><h3 class="lesson-title">Phản Ứng Phân Hạch & Nhiệt Hạch</h3></div>
-                <ul>
-                    <li><b>Phân hạch:</b> Vỡ hạt nhân nặng (Uranium) thành hạt nhân trung bình. Dùng trong nhà máy điện hạt nhân.</li>
-                    <li><b>Nhiệt hạch:</b> Kết hợp hạt nhân nhẹ (H) thành hạt nhân nặng hơn (He). Xảy ra ở Mặt trời (nhiệt độ cực cao).</li>
-                </ul>
             </div>
         </div>
 
         <div id="chemistry" class="tab-content">
-            <h2 style="text-align: center; color: var(--accent-chem);">HÓA HỌC (KIM LOẠI)</h2>
+            <h2 class="subject-title">HÓA HỌC 12 (HỮU CƠ & VÔ CƠ)</h2>
             
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 1</span><h3 class="lesson-title">Vị Trí & Cấu Tạo Kim Loại</h3></div>
-                <p>Nằm ở nhóm IA, IIA, IIIA và các nhóm B. Bán kính nguyên tử lớn hơn phi kim. Lớp ngoài cùng ít electron (1, 2, 3e).</p>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 2</span><h3 class="lesson-title">Tính Chất Hóa Học Chung</h3></div>
-                <div class="box">
-                    <strong>TÍNH KHỬ (M → Mⁿ⁺ + ne)</strong>
-                    <ul>
-                        <li>Tác dụng Phi kim (O₂, Cl₂, S).</li>
-                        <li>Tác dụng Axit (HCl, H₂SO₄ loãng → H₂; HNO₃, H₂SO₄ đặc → SP khử).</li>
-                        <li>Tác dụng Muối (Kim loại mạnh đẩy kim loại yếu).</li>
-                    </ul>
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 1,2,3</span><h3 class="lesson-title">Hóa Hữu Cơ (Este - Cacbohidrat - Amin)</h3></div>
+                <div class="grid-3">
+                    <div class="box"><strong>Este & Lipit</strong>
+                        <p>Công thức Este no, đơn, hở: CnH2nO2 (n≥2).</p>
+                        <p>Phản ứng xà phòng hóa (tác dụng NaOH/KOH) sinh ra muối và Ancol.</p>
+                        <p>Chất béo là trieste của glixerol và axit béo.</p>
+                    </div>
+                    <div class="box"><strong>Cacbohidrat</strong>
+                        <ul>
+                            <li><b>Monosaccarit:</b> Glucozơ, Fructozơ (C6H12O6) - Tráng bạc.</li>
+                            <li><b>Đisaccarit:</b> Saccarozơ (C12H22O11) - Thủy phân ra Glu+Fruc.</li>
+                            <li><b>Polisaccarit:</b> Tinh bột, Xenlulozơ (C6H10O5)n.</li>
+                        </ul>
+                    </div>
+                    <div class="box"><strong>Amin & Amino Axit</strong>
+                        <p>Amin có tính bazơ (làm quỳ tím hóa xanh, trừ Anilin).</p>
+                        <p>Amino Axit (H2N-R-COOH) có tính lưỡng tính.</p>
+                        <p>Peptit: Liên kết -CO-NH- giữa các gốc α-amino axit.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 3</span><h3 class="lesson-title">Dãy Điện Hóa</h3></div>
-                <div class="box" style="text-align: center; font-weight: bold; color: #d35400;">
-                    K Na Ba Ca Mg Al Zn Fe Ni Sn Pb (H) Cu Ag Au
-                </div>
-                <p>Quy tắc Alpha: Chất oxh mạnh + Chất khử mạnh → Chất oxh yếu + Chất khử yếu.</p>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 4</span><h3 class="lesson-title">Ăn Mòn & Điều Chế Kim Loại</h3></div>
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 5</span><h3 class="lesson-title">Đại Cương Kim Loại</h3></div>
                 <div class="grid-2">
-                    <div class="box"><strong>Ăn mòn điện hóa</strong><br>Cần 2 cực khác nhau, tiếp xúc nhau, trong dung dịch điện ly. Cực Âm bị ăn mòn.</div>
-                    <div class="box"><strong>Điều chế</strong><br>- Điện phân nóng chảy (K, Na, Al).<br>- Nhiệt luyện (sau Al).</div>
+                    <div class="box"><strong>Tính chất hóa học chung</strong>
+                        <p>Tính chất đặc trưng: TÍNH KHỬ (M → Mⁿ⁺ + ne).</p>
+                        <p>Dãy điện hóa: K Na Ba Ca Mg Al Zn Fe Ni Sn Pb (H) Cu Ag Hg Pt Au.</p>
+                        <p>Kim loại đứng trước đẩy KL đứng sau ra khỏi muối.</p>
+                    </div>
+                    <div class="box"><strong>Điều chế kim loại</strong>
+                        <ul>
+                            <li><b>Điện phân nóng chảy:</b> KL mạnh (K, Na, Ca, Mg, Al).</li>
+                            <li><b>Nhiệt luyện:</b> Dùng C, CO, H2, Al khử oxit KL sau Al ở nhiệt độ cao.</li>
+                            <li><b>Thủy luyện:</b> Dùng KL mạnh đẩy KL yếu trong dung dịch.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 5</span><h3 class="lesson-title">Kim Loại Kiềm (IA)</h3></div>
-                <p>Li, Na, K, Rb, Cs. Mềm, nhẹ, nhiệt độ nóng chảy thấp.</p>
-                <div class="math">2Na + 2H₂O → 2NaOH + H₂</div>
-                <p>Bảo quản: Ngâm trong dầu hỏa.</p>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 6</span><h3 class="lesson-title">Kim Loại Kiềm Thổ (IIA)</h3></div>
-                <div class="box">
-                    <strong>Nước cứng:</strong> Chứa nhiều Ca²⁺, Mg²⁺.
-                    <br>- Tạm thời: Chứa HCO₃⁻ (Đun sôi, dùng Ca(OH)₂).
-                    <br>- Vĩnh cửu: Chứa Cl⁻, SO₄²⁻ (Dùng Na₂CO₃, Na₃PO₄).
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 7</span><h3 class="lesson-title">Nhôm (Al)</h3></div>
-                <div class="box">
-                    <p>Nhôm có tính khử mạnh. Al₂O₃ và Al(OH)₃ có tính <b>lưỡng tính</b>.</p>
-                    <strong>Phản ứng nhiệt nhôm:</strong>
-                    <div class="math">2Al + Fe₂O₃ → Al₂O₃ + 2Fe</div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 8</span><h3 class="lesson-title">Sắt (Fe)</h3></div>
-                <div class="grid-2">
-                    <div class="box"><strong>Hợp chất Fe(II)</strong><br>FeO, Fe(OH)₂, muối Fe²⁺.<br>Tính khử và oxi hóa.</div>
-                    <div class="box"><strong>Hợp chất Fe(III)</strong><br>Fe₂O₃, Fe(OH)₃.<br>Tính oxi hóa đặc trưng.</div>
-                </div>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 9</span><h3 class="lesson-title">Crom (Cr)</h3></div>
-                <ul>
-                    <li>Cr: Rất cứng, dùng mạ thép.</li>
-                    <li>CrO₃: Oxit axit, màu đỏ thẫm, rất độc, oxh mạnh.</li>
-                    <li>Cr₂O₃: Lưỡng tính, màu lục.</li>
-                </ul>
-            </div>
-
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 10</span><h3 class="lesson-title">Nhận Biết Ion</h3></div>
-                <div class="box">
-                    - <b>Ba²⁺</b>: Thuốc thử SO₄²⁻ → Kết tủa trắng.<br>
-                    - <b>Fe³⁺</b>: Thuốc thử OH⁻ → Kết tủa nâu đỏ.<br>
-                    - <b>Cu²⁺</b>: Thuốc thử OH⁻ → Kết tủa xanh lam.<br>
-                    - <b>Al³⁺</b>: OH⁻ dư → Kết tủa keo trắng rồi tan.
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CHƯƠNG 6,7</span><h3 class="lesson-title">Kim Loại Kiềm, Kiềm Thổ, Nhôm & Sắt</h3></div>
+                <div class="grid-3">
+                    <div class="box"><strong>KL Kiềm & Kiềm Thổ</strong>
+                        <p>Kiềm (IA): Li, Na, K, Rb, Cs. Phản ứng mãnh liệt với H2O.</p>
+                        <p>Nước cứng: Chứa nhiều ion Ca²⁺, Mg²⁺. Làm mềm bằng Na2CO3, Na3PO4.</p>
+                    </div>
+                    <div class="box"><strong>Nhôm (Al)</strong>
+                        <p>Al là KL có tính khử mạnh nhưng không pứ với H2O do có màng Al2O3 bảo vệ.</p>
+                        <p>Bị thụ động hóa trong HNO3 đặc nguội, H2SO4 đặc nguội.</p>
+                        <p>Al2O3 và Al(OH)3 có tính <b>lưỡng tính</b>.</p>
+                    </div>
+                    <div class="box"><strong>Sắt (Fe)</strong>
+                        <p>Có 2 mức oxi hóa phổ biến: +2 và +3.</p>
+                        <p>Tác dụng với HCl, H2SO4 loãng → Fe²⁺.</p>
+                        <p>Tác dụng với HNO3, H2SO4 đặc nóng dư → Fe³⁺.</p>
+                        <p>Hợp chất Fe(II) có tính khử, Fe(III) có tính oxi hóa.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div id="it" class="tab-content">
-            <h2 style="text-align: center; color: var(--accent-it);">TIN HỌC 12 (ACCESS)</h2>
+            <h2 class="subject-title">TIN HỌC 12 (CƠ SỞ DỮ LIỆU)</h2>
             
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 1</span><h3 class="lesson-title">Khái Niệm CSDL Quan Hệ</h3></div>
-                <p>Là CSDL lưu dữ liệu dưới dạng các bảng (Table) có liên kết với nhau. Mỗi hàng là một bản ghi (Record), mỗi cột là một trường (Field).</p>
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">CƠ BẢN</span><h3 class="lesson-title">Hệ CSDL Quan Hệ & Access</h3></div>
+                <div class="grid-3">
+                    <div class="box"><strong>Đặc trưng của mô hình quan hệ</strong>
+                        <ul>
+                            <li>Mỗi bảng (Table) có một tên duy nhất.</li>
+                            <li>Không có 2 hàng (Record) nào giống nhau hoàn toàn.</li>
+                            <li>Thứ tự các cột (Field) và hàng không quan trọng.</li>
+                        </ul>
+                    </div>
+                    <div class="box"><strong>Khóa (Key)</strong>
+                        <p><b>Khóa:</b> Tập hợp một hay nhiều thuộc tính phân biệt các bản ghi.</p>
+                        <p><b>Khóa chính (Primary Key):</b> Khóa được chọn để chỉ định duy nhất 1 bản ghi. Bắt buộc KHÔNG được rỗng.</p>
+                    </div>
+                    <div class="box"><strong>Liên kết bảng (Relationships)</strong>
+                        <p>Giúp đảm bảo tính toàn vẹn dữ liệu và tránh dư thừa.</p>
+                        <p>Thực hiện thông qua việc kết nối Khóa chính (Primary Key) của bảng này với Khóa ngoại (Foreign Key) của bảng khác.</p>
+                    </div>
+                </div>
             </div>
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 2</span><h3 class="lesson-title">Tạo Lập CSDL</h3></div>
-                <p>Bước 1: Tạo tệp CSDL mới.<br>Bước 2: Tạo các bảng.<br>Bước 3: Chỉ định khóa chính.<br>Bước 4: Lưu cấu trúc.</p>
+
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">THỰC HÀNH</span><h3 class="lesson-title">Các Đối Tượng Chính Trong Access</h3></div>
+                <div class="grid-2">
+                    <div class="box"><strong>Bảng (Table) & Biểu mẫu (Form)</strong>
+                        <p><b>Table:</b> Nơi lưu trữ dữ liệu thực sự (Foundation of DB).</p>
+                        <p><b>Form:</b> Giao diện đồ họa giúp nhập liệu, hiển thị và xem dữ liệu một cách trực quan, thân thiện hơn (thay vì nhìn bảng lưới).</p>
+                    </div>
+                    <div class="box"><strong>Mẫu hỏi (Query) & Báo cáo (Report)</strong>
+                        <p><b>Query:</b> Công cụ trích xuất, lọc, sắp xếp và tính toán dữ liệu từ nhiều bảng. (Ví dụ: Lọc ra học sinh có Toán > 8).</p>
+                        <p><b>Report:</b> Dùng để định dạng, tính toán, tổng hợp các dữ liệu được chọn và in ra giấy.</p>
+                    </div>
+                </div>
             </div>
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 3</span><h3 class="lesson-title">Cấu Trúc Bảng</h3></div>
-                <p>Các kiểu dữ liệu: Short Text, Number, Date/Time, Currency, AutoNumber, Yes/No.</p>
-            </div>
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 4</span><h3 class="lesson-title">Các Khóa & Liên Kết</h3></div>
-                <p><b>Khóa chính (Primary Key):</b> Không trùng, không rỗng.<br><b>Khóa ngoại (Foreign Key):</b> Dùng để liên kết sang bảng khác.</p>
-            </div>
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 5</span><h3 class="lesson-title">Các Thao Tác Cơ Bản</h3></div>
-                <p>Cập nhật dữ liệu: Thêm, Xóa, Sửa bản ghi.<br>Sắp xếp và Tìm kiếm dữ liệu.</p>
-            </div>
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 6</span><h3 class="lesson-title">Mẫu Hỏi (Query)</h3></div>
-                <p>Chức năng: Sắp xếp, Lọc, Tính toán.<br>Ví dụ lọc: [Giới tính]="Nữ" AND [Điểm]>8.</p>
-            </div>
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 7</span><h3 class="lesson-title">Biểu Mẫu (Form)</h3></div>
-                <p>Dùng để nhập hoặc hiển thị dữ liệu thuận tiện. Có thể tạo bằng Wizard hoặc Design View.</p>
-            </div>
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 8</span><h3 class="lesson-title">Báo Cáo (Report)</h3></div>
-                <p>Dùng để tổng hợp và in ấn. Có phần Header, Detail, Footer. Có thể nhóm dữ liệu (Group By).</p>
-            </div>
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 9</span><h3 class="lesson-title">Bảo Mật Thông Tin</h3></div>
-                <p>Các giải pháp: Phân quyền truy cập, Mã hóa dữ liệu, Nén dữ liệu, Lưu biên bản hệ thống.</p>
-            </div>
-            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">Bài 10</span><h3 class="lesson-title">Hệ CSDL Phân Tán</h3></div>
-                <p>Dữ liệu không tập trung ở một máy mà rải rác ở nhiều trạm trên mạng. Ưu điểm: Hiệu quả truy cập cao, độ tin cậy lớn.</p>
+
+            <div class="lesson-card"><div class="lesson-header"><span class="lesson-number">MỞ RỘNG</span><h3 class="lesson-title">Ngôn Ngữ Truy Vấn Dữ Liệu (SQL Basic)</h3></div>
+                <div class="box">
+                    <p>Trong các hệ quản trị CSDL chuyên nghiệp, ta dùng SQL. Cú pháp cơ bản:</p>
+                    <div class="math" style="justify-content: flex-start; text-align: left;">
+                        <span style="color: #9b59b6;">SELECT</span> [Tên các cột cần lấy]<br>
+                        <span style="color: #9b59b6;">FROM</span> [Tên Bảng]<br>
+                        <span style="color: #9b59b6;">WHERE</span> [Điều kiện lọc];
+                    </div>
+                    <p>Ví dụ: <code>SELECT HoTen, DiemToan FROM HOC_SINH WHERE DiemToan >= 8;</code></p>
+                </div>
             </div>
         </div>
 
     </div>
 
     <footer>
-        <p>Kiến thức là chìa khóa của thành công.</p>
-        <p>© 2026 Lớp 12A1 - Trường THPT Mạc Đĩnh Chi</p>
-        
+        <h3 style="margin-bottom: 10px; font-size: 1.5rem; letter-spacing: 2px;">VŨ TRỤ KIẾN THỨC 12A1</h3>
+        <p>Hành trình ôn thi THPT Quốc Gia bắt đầu từ những dòng code.</p>
+        <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">© 2026 Developed by Group 8 | Keep Coding, Keep Studying</p>
     </footer>
 
-    <a class="scroll-top" onclick="window.scrollTo(0,0)">↑</a>
+    <a class="scroll-top" onclick="window.scrollTo(0,0)">⇡</a>
 
     <script>
         function showTab(tabName, link) {
-            // Ẩn tất cả tab
+            // Ẩn tất cả tab và bỏ hiệu ứng
             var tabs = document.getElementsByClassName("tab-content");
             for (var i = 0; i < tabs.length; i++) {
                 tabs[i].classList.remove("active");
@@ -451,10 +508,10 @@
             document.getElementById(tabName).classList.add("active");
             link.classList.add("active-link");
 
-            // Cuộn nhẹ lên đầu phần nội dung
+            // Cuộn nhẹ lên đầu phần nội dung để tránh bị che bởi thanh nav dính (sticky)
             var navHeight = document.querySelector("nav").offsetHeight;
             window.scrollTo({
-                top: document.getElementById("main").offsetTop - navHeight - 10,
+                top: document.getElementById("main").offsetTop - navHeight - 20,
                 behavior: 'smooth'
             });
         }
